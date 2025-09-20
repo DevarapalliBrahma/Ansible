@@ -1,0 +1,14 @@
+- name: mysql servers
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.dnf:
+        name: mysql
+        state: present
+
+    - name: Ensure mysql is started and enabled
+      ansible.builtin.service:
+        name: mysql
+        state: started
+        enabled: yes
